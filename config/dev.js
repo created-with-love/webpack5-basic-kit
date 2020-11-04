@@ -1,7 +1,11 @@
-const paths = require('../paths/paths');
+const paths = require('./paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { merge } = require('webpack-merge');
+const shared = require('./shared');
 
-module.exports = env => ({
+module.exports = merge(shared, {
+  mode: 'production',
+
   // sets type of source-map https://webpack.js.org/configuration/devtool/
   devtool: 'eval-cheap-module-source-map',
   output: {
@@ -28,11 +32,13 @@ module.exports = env => ({
   ],
   devServer: {
     contentBase: paths.BUILD,
+    liveReload: true,
     publicPath: '',
     historyApiFallback: true,
     compress: true,
-    port: 7000,
+    port: 7001,
     stats: 'errors-only',
     open: true,
+    watchContentBase: true,
   },
 });

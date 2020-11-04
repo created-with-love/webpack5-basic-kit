@@ -1,10 +1,8 @@
-const paths = require('../paths/paths');
+const paths = require('./paths');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-// const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 // const WebpackBar = require('webpackbar');
 
-module.exports = env => ({
-  mode: env.mode,
+module.exports = {
   // An absolute string to the directory that contains the entry files
   context: paths.SRC,
   //    Where webpack looks to start building the bundle
@@ -97,7 +95,6 @@ module.exports = env => ({
   plugins: [
     // cleans BUILD directory after each npm launch
     new CleanWebpackPlugin(),
-    // new FriendlyErrorsWebpackPlugin(),
     // new WebpackBar(),
   ],
-});
+};

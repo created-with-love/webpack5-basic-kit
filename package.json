@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --env NODE_ENV=dev --config ./config/config.js",
-    "build": "webpack --env NODE_ENV=prod --config ./config/config.js",
+    "dev": "cross-env NODE_ENV=development webpack serve --config ./config/dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./config/prod.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -27,6 +27,7 @@
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "core-js": "^3.6.5",
+    "cross-env": "^7.0.2",
     "css-loader": "^5.0.0",
     "file-loader": "^6.2.0",
     "gh-pages": "^3.1.0",

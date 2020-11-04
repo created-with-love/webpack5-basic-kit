@@ -2,8 +2,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const { merge } = require('webpack-merge');
+const shared = require('./shared');
 
-module.exports = env => ({
+module.exports = merge(shared, {
+  mode: 'development',
+
   // sets type of source-map https://webpack.js.org/configuration/devtool/
   devtool: 'source-map',
   output: {
