@@ -4,12 +4,14 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = env => ({
+  // sets type of source-map https://webpack.js.org/configuration/devtool/
   devtool: 'source-map',
   output: {
-    filename: 'js/[name].[contenthash].js',
+    filename: '[name].[contenthash].js',
   },
   module: {
     rules: [
+      // plugin extracts css to separate file
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
@@ -26,6 +28,7 @@ module.exports = env => ({
     ],
   },
   plugins: [
+    //   plugin generates an HTML5 file that includes all webpack bundles in the body using script tags
     new HtmlWebpackPlugin({
       template: './index.html',
       minify: {
@@ -44,6 +47,7 @@ module.exports = env => ({
   ],
   optimization: {
     minimize: true,
+    //   css plugin minimizes css, terser plugin minimizes js
     minimizer: [new OptimizeCssAssetsPlugin({}), new TerserPlugin()],
   },
 });
