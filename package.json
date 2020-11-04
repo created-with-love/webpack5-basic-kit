@@ -20,7 +20,12 @@
   },
   "homepage": "https://github.com/AleksMkm/webpack5-basic-kit#readme",
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
     "autoprefixer": "^10.0.1",
+    "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
     "css-loader": "^5.0.0",
     "html-webpack-plugin": "^5.0.0-alpha.10",
     "mini-css-extract-plugin": "^1.2.1",
