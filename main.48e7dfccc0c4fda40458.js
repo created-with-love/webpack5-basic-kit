@@ -1,0 +1,2 @@
+(()=>{var e={187:()=>{var e;document.body.appendChild(((e=document.createElement("div")).innerHTML="This is an element created via JS",e))}},r={};function t(n){if(r[n])return r[n].exports;var o=r[n]={exports:{}};return e[n](o,o.exports,t),o.exports}t.n=e=>{var r=e&&e.__esModule?()=>e.default:()=>e;return t.d(r,{a:r}),r},t.d=(e,r)=>{for(var n in r)t.o(r,n)&&!t.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:r[n]})},t.o=(e,r)=>Object.prototype.hasOwnProperty.call(e,r),(()=>{"use strict";t(187)})()})();
+//# sourceMappingURL=main.48e7dfccc0c4fda40458.js.map
