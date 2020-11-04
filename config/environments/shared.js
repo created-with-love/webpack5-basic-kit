@@ -87,10 +87,11 @@ module.exports = env => ({
         test: /\.html$/,
         use: 'html-loader',
       },
-      // {
-      //   test: /\.hbs$/,
-      //   use: 'handlebars-loader',
-      // },
+      {
+        // adds hbs template loader
+        test: /\.hbs$/,
+        use: 'handlebars-loader',
+      },
     ],
   },
   plugins: [
