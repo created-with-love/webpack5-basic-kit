@@ -6,6 +6,7 @@ const shared = require('./shared');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(shared, {
+  // sets appropriate mode
   mode: 'development',
 
   // sets type of source-map https://webpack.js.org/configuration/devtool/

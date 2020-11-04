@@ -8,11 +8,13 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(shared, {
+  // sets appropriate mode
   mode: 'production',
 
   // sets type of source-map https://webpack.js.org/configuration/devtool/
   devtool: 'source-map',
 
+  // specifies output directory
   output: {
     path: paths.BUILD,
     publicPath: './',
@@ -27,7 +29,7 @@ module.exports = merge(shared, {
 
   module: {
     rules: [
-      // plugin extracts css to separate file
+      // plugin extracts css to separate file - for production only
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
@@ -60,7 +62,6 @@ module.exports = merge(shared, {
       },
     }),
     // Extracts CSS into separate files
-    // Note: style-loader is for development, MiniCssExtractPlugin is for production
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
       chunkFilename: '[name].[id].[contenthash].css',

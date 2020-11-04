@@ -3,7 +3,7 @@ const paths = require('./paths');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  // Where webpack looks to start building the bundle
+  // specifies entry point from which webpack will build a bundle
   entry: [paths.SRC + '/index.js'],
 
   // Where webpack outputs the assets and bundles
