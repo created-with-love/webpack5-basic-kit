@@ -12,7 +12,7 @@ module.exports = env => ({
   // Where webpack outputs the assets and bundles
   output: {
     path: paths.BUILD,
-    publicPath: '/',
+    publicPath: '',
   },
   module: {
     rules: [
