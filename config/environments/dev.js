@@ -6,18 +6,18 @@ module.exports = env => ({
   output: {
     filename: '[name].js',
   },
-  //   module: {
-  //     rules: [
-  //       {
-  //         test: /\.css$/,
-  //         use: ['style-loader', 'css-loader', 'postcss-loader'],
-  //       },
-  //       {
-  //         test: /\.scss$/,
-  //         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
-  //       },
-  //     ],
-  //   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+      },
+    ],
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
