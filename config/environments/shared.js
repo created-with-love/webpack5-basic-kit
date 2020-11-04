@@ -1,5 +1,5 @@
 const paths = require('../paths/paths');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 // const WebpackBar = require('webpackbar');
 
@@ -93,9 +93,10 @@ module.exports = env => ({
       // },
     ],
   },
-  // plugins: [
-  //   new CleanWebpackPlugin(),
-  //   new FriendlyErrorsWebpackPlugin(),
-  //   new WebpackBar(),
-  // ],
+  plugins: [
+    // cleans BUILD directory after each npm launch
+    new CleanWebpackPlugin(),
+    // new FriendlyErrorsWebpackPlugin(),
+    // new WebpackBar(),
+  ],
 });
