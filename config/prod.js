@@ -1,18 +1,30 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const paths = require('./paths');
+const { merge } = require('webpack-merge');
+const shared = require('./shared.js');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const { merge } = require('webpack-merge');
-const shared = require('./shared');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(shared, {
-  mode: 'development',
+  mode: 'production',
 
   // sets type of source-map https://webpack.js.org/configuration/devtool/
   devtool: 'source-map',
+
   output: {
+    path: paths.BUILD,
+    publicPath: './',
     filename: '[name].[contenthash].js',
   },
+
+  optimization: {
+    minimize: true,
+    //   css plugin minimizes css, terser plugin minimizes js
+    minimizer: [new OptimizeCssAssetsPlugin({}), new TerserPlugin()],
+  },
+
   module: {
     rules: [
       // plugin extracts css to separate file
@@ -31,10 +43,13 @@ module.exports = merge(shared, {
       },
     ],
   },
+
   plugins: [
     //   plugin generates an HTML5 file that includes all webpack bundles in the body using script tags
+    // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: paths.SRC + '/index.html', // template file
+      filename: 'index.html', // output file
       minify: {
         collapseWhitespace: true,
         removeComments: true,
@@ -44,14 +59,11 @@ module.exports = merge(shared, {
         useShortDoctype: true,
       },
     }),
+    // Extracts CSS into separate files
+    // Note: style-loader is for development, MiniCssExtractPlugin is for production
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
       chunkFilename: '[name].[id].[contenthash].css',
     }),
   ],
-  optimization: {
-    minimize: true,
-    //   css plugin minimizes css, terser plugin minimizes js
-    minimizer: [new OptimizeCssAssetsPlugin({}), new TerserPlugin()],
-  },
 });

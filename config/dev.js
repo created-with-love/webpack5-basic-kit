@@ -1,16 +1,16 @@
 const paths = require('./paths');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const { merge } = require('webpack-merge');
 const shared = require('./shared');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = merge(shared, {
-  mode: 'production',
+  mode: 'development',
 
   // sets type of source-map https://webpack.js.org/configuration/devtool/
   devtool: 'eval-cheap-module-source-map',
-  output: {
-    filename: '[name].js',
-  },
+
   module: {
     rules: [
       // css shall be injected into DOM
@@ -24,21 +24,22 @@ module.exports = merge(shared, {
       },
     ],
   },
+
   plugins: [
     //   plugin generates an HTML5 file that includes all webpack bundles in the body using script tags
+    // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: paths.SRC + '/index.html', // template file
+      filename: 'index.html', // output file
     }),
   ],
+
   devServer: {
-    contentBase: paths.BUILD,
-    liveReload: true,
-    publicPath: '',
     historyApiFallback: true,
-    compress: true,
-    port: 7001,
-    stats: 'errors-only',
+    contentBase: paths.BUILD,
     open: true,
-    watchContentBase: true,
+    compress: true,
+    stats: 'errors-only',
+    port: 7000,
   },
 });

@@ -1,25 +1,24 @@
 const paths = require('./paths');
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-// const WebpackBar = require('webpackbar');
 
 module.exports = {
-  // An absolute string to the directory that contains the entry files
-  context: paths.SRC,
-  //    Where webpack looks to start building the bundle
+  // Where webpack looks to start building the bundle
   entry: [paths.SRC + '/index.js'],
+
   // Where webpack outputs the assets and bundles
   output: {
     path: paths.BUILD,
-    publicPath: '',
+    filename: '[name].js',
+    publicPath: '/',
   },
+
+  // Determine how modules within the project are treated
   module: {
     rules: [
-      // babel adds necessary polyfills to convers ES6 syntax to code that can be interpreted by older browsers
-      {
-        test: /\.js$/,
-        include: paths.SRC,
-        use: ['babel-loader'],
-      },
+      // babel adds necessary polyfills to convert ES6 syntax to code that can be interpreted by older browsers
+      { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
+
       // if file is small it will be processed with url-loader and will be encoded to base64 (inlined)
       // otherwise file will be copied to build folder
       {
@@ -52,7 +51,8 @@ module.exports = {
           },
         ],
       },
-      // url-loader encodes files to base64 and includes them inline rather than having them loaded as separate files with another request.
+
+      /// url-loader encodes files to base64 and includes them inline rather than having them loaded as separate files with another request.
       // it works for small files and reduces overall number of requests
       {
         test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
@@ -80,21 +80,23 @@ module.exports = {
           },
         ],
       },
+
+      // Exports HTML as string
       {
-        // Exports HTML as string
         test: /\.html$/,
         use: 'html-loader',
       },
+
+      // adds hbs template loader
       {
-        // adds hbs template loader
         test: /\.hbs$/,
         use: 'handlebars-loader',
       },
     ],
   },
+
   plugins: [
     // cleans BUILD directory after each npm launch
     new CleanWebpackPlugin(),
-    // new WebpackBar(),
   ],
 };
