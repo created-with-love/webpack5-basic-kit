@@ -1,0 +1,29 @@
+{
+  "name": "webpack5-basic-kit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --env NODE_ENV=dev --config ./config/config.js",
+    "build": "webpack --env NODE_ENV=prod --config ./config/config.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AleksMkm/webpack5-basic-kit.git"
+  },
+  "author": "Aleksandr Mukomelov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AleksMkm/webpack5-basic-kit/issues"
+  },
+  "homepage": "https://github.com/AleksMkm/webpack5-basic-kit#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.0.0-alpha.10",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.1.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.3.0"
+  }
+}
